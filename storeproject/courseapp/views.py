@@ -15,7 +15,7 @@ def student_create_view(request):
             form.save()
             messages.success(request, 'Order has been placed successfully!')
             return redirect('student_add')
-    return render(request, 'courseapp/home.html', {'form': form})
+    return render(request, 'home1.html', {'form': form})
 
 
 def student_update_view(request, pk):
@@ -26,14 +26,14 @@ def student_update_view(request, pk):
         if form.is_valid():
             form.save()
             return redirect('student_change', pk=pk)
-    return render(request, 'courseapp/home.html', {'form': form})
+    return render(request, 'home1.html', {'form': form})
 
 
 # AJAX
 def load_courses(request):
     department_id = request.GET.get('department_id')
     courses = Course.objects.filter(department_id=department_id).all()
-    return render(request, 'courseapp/course_dropdown_list_options.html', {'courses': courses})
+    return render(request, 'course_dropdown_list_options.html', {'courses': courses})
     # return JsonResponse(list(courses.values('id', 'name')), safe=False)
 
 
